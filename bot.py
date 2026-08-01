@@ -1,6 +1,5 @@
 import logging
-from telegram import Update
-from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler, MessageHandler, filters
+from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -9,12 +8,12 @@ logging.basicConfig(
 
 BOT_TOKEN = "8798887487:AAFQzXivllQOZItlb0ictpU6EOm8vv5BS_I"
 
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def start(update, context):
     await update.message.reply_text(
         "أهلاً بيك يا لو. البوت شغال وجاهز ابعتلي لينك البيت."
     )
 
-async def handle_target(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def handle_target(update, context):
     target_url = update.message.text
     
     if "tiktok.com" not in target_url:
@@ -23,7 +22,7 @@ async def handle_target(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text(f"جاري استقبال الهدف وبدء إغلاق البلاغات [*]\nتم إرسال الدفعة الأولى بنجاح على: \n{target_url}")
 
-if __name__ == '__main__':
+def main():
     application = ApplicationBuilder().token(BOT_TOKEN).build()
     
     application.add_handler(CommandHandler("start", start))
@@ -31,3 +30,6 @@ if __name__ == '__main__':
     
     print("[*] البوت شغال وجاهز لاستقبال الأوامر...")
     application.run_polling()
+
+if __name__ == '__main__':
+    main()
