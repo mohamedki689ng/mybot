@@ -6,7 +6,7 @@ logging.basicConfig(
     level=logging.INFO
 )
 
-BOT_TOKEN = "8798887487:AAFQzXivllQOZItlb0ictpU6EOm8vv5BS_I"
+BOT_TOKEN = "8798887487:AAFQzXivllQOZItlb0iCtpU6EOm8vv5BS_I"
 
 async def start(update, context):
     await update.message.reply_text(
